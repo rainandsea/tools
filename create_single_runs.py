@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 :created on: 2020-07-29
-:copyright: NSN
 :author: Huaiyuan Liu
-:contact: huaiyuan.liu@nokia-sbell.com
 """
 from sqlalchemy import create_engine
 from ute_cloud_manager_api.api import CloudManagerApi
@@ -17,42 +15,23 @@ BASE_DIRECTORY = os.path.abspath(os.path.join(os.path.dirname("__file__"), os.pa
 LOG_DIRECTORY = os.path.join(BASE_DIRECTORY, 'logs/')
 
 TOKENS = {
-    'huailiu': 'b6fd0901665802f9ea6350e50ebd12e2f4a43a71',
-    'w13li': '517b633f8adbce12af28195e7ec5caaa3468cf28',
-    'qiaren': '8a14d5cd2000fd1e576662a1a21fe3a19f9de880',
-    'zhacao': '1ac26e26d6eae12283efbd59acf837d243bf9a00',
-    'zhachen': '3a5879340dcd3fa060c4c2000cbadd1dac302788',
-    'suxu': '2fae44c4afa2026bfafc35c4491c3cc0b8760b6d',
-    'molyang': '23b5b0be8cdd236a0d360172cc13d84cf75275fa',
-    'peafu': '01cd07d57f5e173eae11e9207c9c0df995a28531',
-    'haifewan': '150929b493791395236a321bdc0aa74ba1d863ed',
-    'xiapzhan': '7acd00f9c9375829131546e2868c437d2c7487e4',
-    'k3chen': 'b050d8daf2551b91707fd0f3918ca1ae750a68ba',
-    'rewu': '16d9651f6cc97b9958f3aafcb8903734c6bad7b5',
-    'qiqluo': '46e2c0d00d31e0dca2325d61827ac5b35cdf67e6',
-    'naliu': '60150986ee00a89b0c567252214ead1a9353ce6e',
-    'w22733': 'b9cd48dbdef736186fa1f7e324c219fcaa722387',
-    'nidu': '27bf196835b19c016db255b7dc10048cb617acc3',
-    'xinwang': 'bb48f2c2a4ba5d8d6df6572a34183faa5545c4fb',
-    'qianwu': '404d6dccd47e7b30f2c09acdfb71f6319b70009a',
-    'bizhou': 'e17d6b2cbabef18302f8b57ab0845612e4e37ffe',
-    'yuema': '3a2d5fc66950f9ecda31da236f5953d959aeae87',
-    'trshen': 'b4f42302a2264782a27d39773e64e044ddd23779',
-    'alicchen': '0d2c1aff5209e62136b3f7c3a964e359eb870850',
-    'krihu': 'c934eb41ff32a6837c74fa5a4db70dcfffabbe54',
-    'q19370': '55057f3a471e3df8e800fb69dcfa6ee925b8d4fb'
+    'xxx1': 'b6fd0901665802f9ea6350e50ebd12e2f4a43a71',
+    'xxx2': '517b633f8adbce12af28195e7ec5caaa3468cf28',
+    'xxx3': '8a14d5cd2000fd1e576662a1a21fe3a19f9de880',
+    'xxx4': '1ac26e26d6eae12283efbd59acf837d243bf9a00',
+    'xxx5': '3a5879340dcd3fa060c4c2000cbadd1dac302788'
 }
 
 
 class GitParser(object):
     def __init__(self):
-        self.sign_in_url = 'https://wrgitlab.int.net.nokia.com/users/sign_in'
-        self.login_url = 'https://wrgitlab.int.net.nokia.com/users/auth/ldapmain/callback'
-        self.case_url = 'https://wrgitlab.int.net.nokia.com/5G/robotws5g/blob/master/'
-        self.tags_scope = ['5G_SC', '5G_RAN', '5G_RAN_FDD', '5G_RAN_TDD', '5G_SC_FDD', '5G_SC_TDD']
+        self.sign_in_url = 'https://xxx.com/users/sign_in'
+        self.login_url = 'https://xxx.com/users/auth/ldapmain/callback'
+        self.case_url = 'https://xxx.com/5G/robotws5g/blob/master/'
+        self.tags_scope = ['A', 'B', 'C', 'D', 'E', 'F']
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
-            'referer': 'https://wrgitlab.int.net.nokia.com/users/sign_in'
+            'referer': 'https://xxx.com/users/sign_in'
         }
         self.session = requests.Session()
 
@@ -67,8 +46,8 @@ class GitParser(object):
         form_data = {
             'utf8': '✓',
             'authenticity_token': self._get_csrf_token(response.text),
-            'username': 'huailiu',
-            'password': 'lhY@055118'
+            'username': 'admin',
+            'password': 'admin'
         }
 
         res = self.session.post(self.login_url, data=form_data, headers=self.headers)
@@ -91,13 +70,13 @@ class GitParser(object):
 
 class CreateSingleRuns(object):
     def __init__(self):
-        self.db_url = "mysql+pymysql://root:uteadmin@10.131.148.5:3306/oep_db"
+        self.db_url = "mysql+pymysql://root:uteadmin@xxx.xxx.xxx.xxx:3306/oep_db"
         self.engine = create_engine(self.db_url)
         self.api = CloudManagerApi(api_token='1eb5f850408fbe9e34f584174465017d90247921')
         self.parser = GitParser()
 
-        self.tags_scope = ['5G_SC', '5G_RAN', '5G_RAN_FDD', '5G_RAN_TDD', '5G_SC_FDD', '5G_SC_TDD']
-        self.branchs_scope = ['master_classicalbts_all', '20Ab1_classicalbts']  # for now, only trunk supported
+        self.tags_scope = ['A', 'B', 'C', 'D', 'E', 'F']
+        self.branchs_scope = ['branch_a', 'branch_b']  # for now, only trunk supported
         self.result_scope = ['not analyzed', 'environment issue']
 
         self.qc_cases = []
