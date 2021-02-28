@@ -17,7 +17,7 @@ FILTERS = [
 QUERY_CMD = "SELECT * FROM cn1_all_qc_instances WHERE " + " AND ".join(FILTERS)
 
 DB_ARGUMENTS = {
-    'host': '10.131.148.5',
+    'host': 'xxx.xxx.xxx.xxx',
     'username': 'root',
     'password': 'uteadmin',
     'database': 'oep_db',
