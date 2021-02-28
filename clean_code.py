@@ -50,8 +50,8 @@ UP_AND_DOWNS = [
     '[Teardown]'
 ]
 
-TITLE_BEFORE = '\n' + '-' * 90 + '\n'
-TITLE_AFTER = '\n' + '-' * 90 + '\n'
+TITLE_BEFORE = TITLE_AFTER = '\n' + '-' * 90 + '\n'
+# TITLE_AFTER = '\n' + '-' * 90 + '\n'
 
 
 class CleanCode(object):
